@@ -1,0 +1,51 @@
+class Node{
+    String url;
+    Node next;
+    Node prev;
+    public Node(String url){
+        this.url=url;
+        this.next=null;
+        this.prev=null;
+    }
+}
+class BrowserHistory {
+    Node home;
+    Node curr;
+
+    public BrowserHistory(String homepage) {
+        home= new Node(homepage);
+        curr=home;
+    }
+    
+    public void visit(String url) {
+        curr.next=null;
+        Node newnode= new Node(url);
+        curr.next=newnode;
+        newnode.prev=curr;
+        curr=newnode;
+    }
+    
+    public String back(int steps) {
+        while(curr.prev!=null && steps-->0){
+            curr=curr.prev;
+        }
+        return curr.url;
+        
+    }
+    
+    public String forward(int steps) {
+        while(curr.next != null && steps-->0){
+            curr = curr.next;
+        }
+        return curr.url;
+        
+    }
+}
+
+/**
+ * Your BrowserHistory object will be instantiated and called as such:
+ * BrowserHistory obj = new BrowserHistory(homepage);
+ * obj.visit(url);
+ * String param_2 = obj.back(steps);
+ * String param_3 = obj.forward(steps);
+ */

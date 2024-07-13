@@ -1,0 +1,28 @@
+class Solution:
+    def maxSatisfied(self, customers: List[int], grumpy: List[int], minutes: int) -> int:
+        totalsum=0
+        n=len(customers)
+        for i in range(n):
+            if(grumpy[i]==0):
+                totalsum+=customers[i]
+        windowsum=0
+        tempsum=totalsum
+        ans=-1000000007
+        for i in range(minutes):
+            windowsum+=customers[i]
+            if(grumpy[i]==0):
+                tempsum-=customers[i]
+            ans=max(ans,windowsum+tempsum)
+        for i in range(minutes,n):
+            windowsum-=customers[i-minutes]
+            windowsum+=customers[i]
+            if(grumpy[i-minutes]==0):
+                tempsum+=customers[i-minutes]
+            if(grumpy[i]==0):
+                tempsum-=customers[i]
+            ans=max(ans,windowsum+tempsum)
+        return ans
+            
+
+        
+        

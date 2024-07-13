@@ -1,0 +1,9 @@
+class Solution:
+    def convertToTitle(self, columnNumber: int) -> str:
+        ans=""
+        while(columnNumber > 0):
+            k=(columnNumber -1 ) % 26
+            ans=ans+chr(k + ord('A'))
+            columnNumber = (columnNumber-1)//26
+        return ans[::-1]
+        

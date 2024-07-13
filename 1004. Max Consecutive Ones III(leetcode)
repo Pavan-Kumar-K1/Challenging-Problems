@@ -4,7 +4,7 @@ class Solution:
         index=0
         n=len(nums)
         i=0
-        ans=-1000000007
+        ans=0
         while(i<n):
             if(nums[i]==0):
                 zeroes+=1

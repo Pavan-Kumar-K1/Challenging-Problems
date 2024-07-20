@@ -1,0 +1,18 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        cnt = [0]*26
+        n=len(s)
+        i=0
+        j=0
+        max_len=0
+        max_freq=0
+        while(j < n):
+            cnt[ord(s[j])- ord('A')]+=1
+            max_freq = max(max_freq,cnt[ord(s[j])- ord('A')])
+            if((j-i+1)-max_freq > k):
+                cnt[ord(s[i])- ord('A')]-=1
+                i=i+1
+            if((j-i+1)-max_freq <= k):
+                max_len = max(max_len,j-i+1)
+            j+=1
+        return max_len

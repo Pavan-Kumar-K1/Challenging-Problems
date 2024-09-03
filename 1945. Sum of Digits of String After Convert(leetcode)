@@ -1,0 +1,26 @@
+class Solution:
+    def getLucky(self, s: str, k: int) -> int:
+        number = 0
+        n = len(s)
+        for i in range(n):
+            p = ord(s[i])
+            p = p-96
+            print(p)
+            if(p==10):
+                number+=1
+            elif p==20:
+                number+=2
+            elif(p>10):
+                number = number + p%10 + p//10
+            else:
+                number += p
+        print(number)
+        for i in range(k-1):
+            m = 0
+            while number:
+                m += number%10
+                number//=10
+            number = m
+
+        return number
+        

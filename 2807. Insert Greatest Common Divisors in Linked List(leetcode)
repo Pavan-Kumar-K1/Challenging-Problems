@@ -1,0 +1,20 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+import math
+class Solution:
+    def insertGreatestCommonDivisors(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        temp = head
+        while head.next:
+            prev = head
+            n = head.next
+            k = math.gcd(prev.val,n.val)
+            prev.next = ListNode(k)
+            prev.next.next = n
+            head = n
+        return temp
+        
+
+        

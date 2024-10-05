@@ -1,0 +1,29 @@
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        def check(cnta,cntb):
+            for i in range(26):
+                if cnta[i] != cntb[i]:
+                    return False
+            return True
+        cnta = [0] * 26
+        n = len(s1)
+        m = len(s2)
+        if m < n:
+            return False
+        for i in s1:
+            cnta[ord(i) - ord('a')] += 1
+        cntb = [0] * 26
+        for i in range(n):
+            cntb[ord(s2[i]) - ord('a')] += 1
+        if check(cnta,cntb):
+            return True
+        j = 0
+        i = n
+        while i < m:
+            cntb[ord(s2[i]) - ord('a')] += 1
+            cntb[ord(s2[j]) - ord('a')] -= 1
+            if check(cnta,cntb):
+                return True 
+            i += 1
+            j += 1
+        return False        
